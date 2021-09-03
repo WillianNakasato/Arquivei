@@ -1,0 +1,74 @@
+drop table if exists bi-psel.willian_nakasato.Base2;
+
+Create table bi-psel.willian_nakasato.Base2 as
+SELECT  
+
+t1.unique_key,
+case when unique_key is not null then 1 end as qtde_acionamentos,
+t1.time as tempo,
+case
+when time >= '00:00:00' and time <= '02:00:00' then "a.Entre 0 e 2h"
+when time >= '02:00:01' and time <= '04:00:00' then "b.Entre 2 e 4h"
+when time >= '04:00:01' and time <= '06:00:00' then "c.Entre 4 e 6h"
+when time >= '06:00:01' and time <= '08:00:00' then "d.Entre 6 e 8h"
+when time >= '08:00:01' and time <= '10:00:00' then "e.Entre 8 e 10h"
+when time >= '10:00:01' and time <= '12:00:00' then "f.Entre 10 e 12h"
+when time >= '12:00:01' and time <= '14:00:00' then "g.Entre 12 e 14h"
+when time >= '14:00:01' and time <= '16:00:00' then "h.Entre 14 e 16h"
+when time >= '16:00:01' and time <= '18:00:00' then "i.Entre 16 e 18h"
+when time >= '18:00:01' and time <= '20:00:00' then "j.Entre 18 e 20h"
+when time >= '20:00:01' and time <= '22:00:00' then "k.Entre 20 e 22h"
+when time >= '22:00:01' and time <= '23:59:59' then "l.Entre 22 e 24h"
+end as fx_tempo,
+t1.address as Endereco,
+t1.descript as Descricao,
+t1.longitude as Longitude,
+t1.latitude as Latitude,
+t1.location as Localizacao,
+t1.timestamp as data_hora,
+date(timestamp) as data,
+extract(month from timestamp) as mes,
+extract(YEAR from timestamp) as ano
+
+FROM `bi-psel.willian_nakasato.Base` t1;
+
+Create table bi-psel.willian_nakasato.Base3 AS
+SELECT
+
+t1.*,
+case when mes = 1 then "Jan"||"/"||ano
+when mes = 2 then "Fev"||"/"||ano
+when mes = 3 then "Mar"||"/"||ano
+when mes = 4 then "Abr"||"/"||ano
+when mes = 5 then "Mai"||"/"||ano
+when mes = 6 then "Jun"||"/"||ano
+when mes = 7 then "Jul"||"/"||ano
+when mes = 8 then "Ago"||"/"||ano
+when mes = 9 then "Set"||"/"||ano
+when mes = 10 then "Out"||"/"||ano
+when mes = 11 then "Nov"||"/"||ano
+when mes = 12 then "Dez"||"/"||ano
+END AS mes2,
+case when mes = 1 then "Jan"
+when mes = 2 then "Fev"
+when mes = 3 then "Mar"
+when mes = 4 then "Abr"
+when mes = 5 then "Mai"
+when mes = 6 then "Jun"
+when mes = 7 then "Jul"
+when mes = 8 then "Ago"
+when mes = 9 then "Set"
+when mes = 10 then "Out"
+when mes = 11 then "Nov"
+when mes = 12 then "Dez"
+END AS mes3
+
+
+from `bi-psel.willian_nakasato.Base2` t1
+	
+create table bi-psel.willian_nakasato.maxmo AS
+SELECT
+
+MAX(data) AS MAX_DATA
+
+FROM bi-psel.willian_nakasato.TESTE2
