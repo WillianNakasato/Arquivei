@@ -10,3 +10,5 @@ Observações:
 1. No total Acumulado entre o período da análise, 97% das incidências são do ano de 2016.
 2. Houve um aumento de 3.233% no registro de incidências em 2016 em relação ao ano de 2015.
 3. No acumulado de 2015 e 2016, a concentração de registros ocorre nos períodos das 10h ao 12h(fim da manhã) ou entre 16h e 20h(fim da tarde)
+
+Obs.: Não encontrei a função para deixar a tabela de meses em sequência, então deixei em ordem numérica.
